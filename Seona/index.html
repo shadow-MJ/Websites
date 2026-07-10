@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seōna – K-Beauty Store</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container"></div>
+
+    <!-- WHATSAPP SUPPORT WIDGET (visible on every page) -->
+    <div id="wa-widget">
+      <div id="wa-popup">
+        <div id="wa-popup-header">
+          <div class="wa-popup-avatar">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.22 8.22 0 0 1-1.26-4.4c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.27-8.22 8.27Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.15-.01-.31-.01-.48-.01-.16 0-.43.06-.66.31-.22.24-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.19.2-.58.2-1.08.14-1.19-.06-.1-.22-.16-.47-.28Z"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="wa-popup-title">Seōna Support</div>
+            <div class="wa-popup-status">
+              <span class="wa-status-dot"></span>Typically replies within
+              minutes
+            </div>
+          </div>
+          <button
+            class="wa-popup-close"
+            onclick="closeWaPopup()"
+            aria-label="Close"
+          >
+            &times;
+          </button>
+        </div>
+        <div id="wa-popup-body">
+          <div class="wa-chat-bubble">
+            Hi there! 👋 Need help finding a product or have a question about
+            your order? Chat with us on WhatsApp and we'll get back to you right
+            away.
+          </div>
+        </div>
+        <button class="wa-popup-cta" onclick="whatsappSupport()">
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            style="width: 1.1rem; height: 1.1rem"
+          >
+            <path
+              d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Z"
+            />
+          </svg>
+          START CHAT
+        </button>
+      </div>
+      <button
+        id="wa-fab"
+        onclick="toggleWaPopup()"
+        aria-label="Chat with us on WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.22 8.22 0 0 1-1.26-4.4c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.27-8.22 8.27Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.36-.77-1.86-.2-.48-.41-.42-.56-.43-.15-.01-.31-.01-.48-.01-.16 0-.43.06-.66.31-.22.24-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.19.2-.58.2-1.08.14-1.19-.06-.1-.22-.16-.47-.28Z"
+          />
+        </svg>
+        <span class="wa-fab-ping"></span>
+      </button>
+    </div>
+
+    <!-- DRAWER (Mobile) -->
+    <div id="drawer-overlay" onclick="closeDrawer()"></div>
+    <div id="drawer">
+      <div
+        style="
+          margin-bottom: 1.5rem;
+          font-family: &quot;Satisfy&quot;, cursive;
+          font-size: 1.8rem;
+          color: var(--primary);
+        "
+      >
+        Seōna
+      </div>
+      <div
+        class="drawer-link"
+        onclick="
+          navigate('home');
+          closeDrawer();
+        "
+      >
+        HOME
+      </div>
+      <div
+        class="drawer-link"
+        onclick="
+          navigate('shop');
+          closeDrawer();
+        "
+      >
+        SHOP
+      </div>
+      <div
+        class="drawer-link"
+        onclick="
+          navigate('brands');
+          closeDrawer();
+        "
+      >
+        BRANDS
+      </div>
+      <div
+        class="drawer-link"
+        onclick="
+          navigate('categories');
+          closeDrawer();
+        "
+      >
+        CATEGORIES
+      </div>
+      <div
+        class="drawer-link"
+        onclick="
+          navigate('review');
+          closeDrawer();
+        "
+      >
+        REVIEW
+      </div>
+      <div
+        class="drawer-link"
+        onclick="
+          navigate('contact');
+          closeDrawer();
+        "
+      >
+        CONTACT US
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <div id="navbar">
+      <div class="nav-topbar">
+        <div class="container">seona.bd@gmail.com</div>
+      </div>
+      <div class="nav-main">
+        <div class="nav-inner">
+          <!-- Mobile Menu -->
+          <div class="nav-mobile-menu">
+            <button class="nav-icon-btn" onclick="openDrawer()">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Desktop Left Nav -->
+          <nav class="nav-left nav-left-desktop">
+            <span class="nav-link" onclick="navigate('wishlist')">
+              ♡ WISHLIST (<span id="wishlist-count">0</span>)
+            </span>
+            <span class="nav-link" onclick="navigate('home')">HOME</span>
+            <span class="nav-link" onclick="navigate('brands')">BRANDS</span>
+            <span class="nav-link" onclick="navigate('categories')"
+              >CATEGORIES</span
+            >
+          </nav>
+
+          <!-- Logo -->
+          <div class="nav-logo" onclick="navigate('home')">Seōna</div>
+
+          <!-- Desktop Right Nav -->
+          <div class="nav-right nav-right-desktop">
+            <nav style="display: flex; align-items: center; gap: 1.5rem">
+              <span class="nav-link" onclick="navigate('shop')">SHOP</span>
+              <span class="nav-link" onclick="navigate('about')">ABOUT US</span>
+              <span class="nav-link" onclick="navigate('review')">REVIEW</span>
+              <span class="nav-link" onclick="navigate('contact')"
+                >CONTACT US</span
+              >
+            </nav>
+            <!-- Search -->
+            <div id="search-bar-wrap">
+              <button
+                class="nav-icon-btn"
+                id="search-toggle-btn"
+                onclick="toggleSearch()"
+              >
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" stroke-linecap="round" />
+                </svg>
+              </button>
+              <form
+                id="search-form"
+                class="hidden"
+                onsubmit="doNavSearch(event)"
+              >
+                <input id="search-input-nav" placeholder="Search products..." />
+                <button type="submit" class="nav-icon-btn search-submit-btn">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" stroke-linecap="round" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+            <!-- Cart -->
+            <div class="nav-icon-wrap">
+              <button class="nav-icon-btn" onclick="navigate('cart')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-width="2"
+                    d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                  />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <path d="M16 10a4 4 0 0 1-8 0" />
+                </svg>
+              </button>
+              <span class="cart-badge" id="cart-badge" style="display: none"
+                >0</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PAGES ===== -->
+    <main>
+      <!-- HOME -->
+      <div id="page-home" class="page active">
+        <!-- Hero -->
+        <section class="hero">
+          <div class="hero-bg">
+            <img
+              src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=2000&auto=format&fit=crop"
+              alt="Hero"
+            />
+          </div>
+          <div class="container">
+            <div class="hero-content">
+              <h1>Discover Your<br />Signature Glow</h1>
+              <p>
+                Curated Korean skincare for a clean, soft, and radiant
+                complexion. Skincare as self-care.
+              </p>
+              <button class="btn btn-primary btn-lg" onclick="navigate('shop')">
+                SHOP NOW
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section class="section">
+          <div class="container">
+            <div class="section-head">
+              <div class="section-title">New Arrivals</div>
+              <div class="section-sub">Fresh from Seoul</div>
+            </div>
+            <div class="product-grid" id="new-arrivals-grid"></div>
+            <div class="text-center mt-4" style="margin-top: 3rem">
+              <button class="btn btn-outline" onclick="navigate('shop')">
+                VIEW ALL NEW
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Bestsellers -->
+        <section
+          class="section"
+          style="background: rgba(123, 187, 221, 0.08); padding: 5rem 0"
+        >
+          <div class="container">
+            <div class="section-head">
+              <div class="section-title">Cult Favorites</div>
+              <div class="section-sub">Loved by everyone</div>
+            </div>
+            <div class="product-grid" id="bestsellers-grid"></div>
+          </div>
+        </section>
+
+        <!-- Stats -->
+        <section
+          style="
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+          "
+        >
+          <div class="container">
+            <div class="stats-grid">
+              <div>
+                <div class="stat-num">8+</div>
+                <div class="stat-label">Products</div>
+              </div>
+              <div>
+                <div class="stat-num">8+</div>
+                <div class="stat-label">Brands</div>
+              </div>
+              <div>
+                <div class="stat-num">8+</div>
+                <div class="stat-label">Categories</div>
+              </div>
+              <div>
+                <div class="stat-num">8+</div>
+                <div class="stat-label">Happy Reviews</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Brands -->
+        <section class="section">
+          <div class="container">
+            <div class="section-head">
+              <div class="section-title">Featured Brands</div>
+              <div class="section-sub">The best of K-Beauty</div>
+            </div>
+            <div class="brands-strip" id="brands-strip"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SHOP -->
+      <div id="page-shop" class="page">
+        <div class="container" style="padding-top: 3rem; padding-bottom: 5rem">
+          <div class="section-head">
+            <div class="section-title">Shop All</div>
+            <p
+              style="
+                color: var(--muted-fg);
+                max-width: 500px;
+                margin: 0 auto;
+                font-size: 0.9rem;
+              "
+            >
+              Discover our full collection of premium Korean skincare products.
+            </p>
+          </div>
+          <div class="shop-layout">
+            <!-- Sidebar -->
+            <div class="shop-sidebar" id="shop-sidebar">
+              <div class="filter-group">
+                <div class="shop-sidebar-title">CATEGORIES</div>
+                <div id="cat-filters"></div>
+              </div>
+              <div class="filter-group">
+                <div class="shop-sidebar-title">BRANDS</div>
+                <div id="brand-filters"></div>
+              </div>
+            </div>
+            <!-- Main -->
+            <div class="shop-main">
+              <div class="shop-toolbar">
+                <div style="display: flex; align-items: center; gap: 1rem">
+                  <button
+                    class="btn btn-outline btn-sm filters-mobile-btn"
+                    onclick="toggleSidebar()"
+                  >
+                    <svg
+                      style="width: 1rem; height: 1rem"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-width="2"
+                        d="M3 4a1 1 0 011-1h16a1 1 0 010 2H4a1 1 0 01-1-1zM7 12h10M10 20h4"
+                      />
+                    </svg>
+                    Filters
+                  </button>
+                  <div class="shop-count" id="shop-count">
+                    Showing 0 products
+                  </div>
+                </div>
+                <div class="search-input-wrap">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" stroke-linecap="round" />
+                  </svg>
+                  <input
+                    type="text"
+                    class="shop-search-input"
+                    id="shop-search"
+                    placeholder="Search products..."
+                    oninput="renderShop()"
+                  />
+                </div>
+              </div>
+              <div class="product-grid" id="shop-grid"></div>
+              <div id="shop-empty" class="no-products hidden">
+                <h3>No products found</h3>
+                <p style="color: var(--muted-fg); margin: 0.5rem 0 1.5rem">
+                  Try adjusting your filters or search term.
+                </p>
+                <button class="btn btn-outline" onclick="clearShopFilters()">
+                  Clear all filters
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCT DETAIL -->
+      <div id="page-product" class="page">
+        <div class="container" style="padding-top: 3rem; padding-bottom: 5rem">
+          <div class="breadcrumbs" id="product-breadcrumbs"></div>
+          <div class="product-detail-layout" id="product-detail-layout"></div>
+          <div style="margin-top: 4rem">
+            <div class="tabs-nav" id="product-tabs-nav"></div>
+            <div id="product-tabs-body"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CART -->
+      <div id="page-cart" class="page">
+        <div class="container" style="padding-top: 3rem; padding-bottom: 5rem">
+          <div class="section-head">
+            <div class="section-title">Shopping Bag</div>
+          </div>
+          <div id="cart-content"></div>
+        </div>
+      </div>
+
+      <!-- WISHLIST -->
+      <div id="page-wishlist" class="page">
+        <div class="container" style="padding-top: 3rem; padding-bottom: 5rem">
+          <div class="section-head">
+            <div class="section-title">Your Wishlist</div>
+          </div>
+          <div id="wishlist-content"></div>
+        </div>
+      </div>
+
+      <!-- BRANDS -->
+      <div id="page-brands" class="page">
+        <div class="container" style="padding-top: 3rem; padding-bottom: 5rem">
+          <div class="section-head">
+            <div class="section-title">Our Brands</div>
+            <p
+              style="
+                color: var(--muted-fg);
+                max-width: 500px;
+                margin: 0 auto;
+                font-size: 0.9rem;
+              "
+            >
+              We carefully curate the best Korean beauty brands, focusing on
+              quality ingredients and effective formulations.
+            </p>
+          </div>
+          <div class="brands-grid" id="brands-grid"></div>
+        </div>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div id="page-categories" class="page">
+        <div class="container" style="padding-top: 3rem; padding-bottom: 5rem">
+          <div class="section-head">
+            <div class="section-title">Shop by Category</div>
+            <p
+              style="
+                color: var(--muted-fg);
+                max-width: 500px;
+                margin: 0 auto;
+                font-size: 0.9rem;
+              "
+            >
+              Explore our collection by step in your skincare routine.
+            </p>
+          </div>
+          <div class="categories-grid" id="categories-grid"></div>
+        </div>
+      </div>
+
+      <!-- REVIEW -->
+      <div id="page-review" class="page">
+        <div class="container" style="padding-top: 3rem; padding-bottom: 5rem">
+          <div class="section-head">
+            <div class="section-title">Customer Reviews</div>
+            <p
+              style="
+                color: var(--muted-fg);
+                max-width: 500px;
+                margin: 0 auto;
+                font-size: 0.9rem;
+              "
+            >
+              Read what our community has to say about their favorite products.
+            </p>
+          </div>
+          <div class="review-page-layout">
+            <!-- Form -->
+            <div class="review-form-col">
+              <div class="form-box">
+                <h3>Write a Review</h3>
+                <form onsubmit="submitReview(event)">
+                  <div class="form-field">
+                    <label class="form-label">Product *</label>
+                    <select class="form-select" id="review-product" required>
+                      <option value="">Select a product</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label">Name *</label>
+                    <input class="form-input" id="review-name" required />
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label">Rating *</label>
+                    <div class="star-picker" id="star-picker">
+                      <span class="star-pick on" data-v="1">★</span>
+                      <span class="star-pick on" data-v="2">★</span>
+                      <span class="star-pick on" data-v="3">★</span>
+                      <span class="star-pick on" data-v="4">★</span>
+                      <span class="star-pick on" data-v="5">★</span>
+                    </div>
+                    <input type="hidden" id="review-rating" value="5" />
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label">Review Title</label>
+                    <input class="form-input" id="review-title" />
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label">Review Body</label>
+                    <textarea
+                      class="form-textarea"
+                      id="review-body"
+                      rows="4"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary w-full btn-sq"
+                    style="border-radius: var(--radius)"
+                  >
+                    SUBMIT REVIEW
+                  </button>
+                </form>
+              </div>
+            </div>
+            <!-- List -->
+            <div class="review-list-col" id="review-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div id="page-contact" class="page">
+        <div
+          class="container"
+          style="padding-top: 3rem; padding-bottom: 5rem; max-width: 900px"
+        >
+          <div class="section-head">
+            <div class="section-title">Contact Us</div>
+            <p
+              style="
+                color: var(--muted-fg);
+                max-width: 500px;
+                margin: 0 auto;
+                font-size: 0.9rem;
+              "
+            >
+              We'd love to hear from you. Fill out the form or reach out
+              directly.
+            </p>
+          </div>
+          <div class="contact-layout">
+            <div class="contact-info">
+              <h3
+                style="
+                  font-family: &quot;Satisfy&quot;, cursive;
+                  font-size: 2rem;
+                  margin-bottom: 1rem;
+                "
+              >
+                Get in Touch
+              </h3>
+              <p
+                style="
+                  color: var(--muted-fg);
+                  margin-bottom: 2rem;
+                  font-size: 0.9rem;
+                  line-height: 1.7;
+                "
+              >
+                Whether you have a question about our products, your order, or
+                just want to say hello, we're here for you.
+              </p>
+              <div class="contact-detail">
+                <div class="contact-detail-label">EMAIL</div>
+                <div style="color: var(--muted-fg); font-size: 0.9rem">
+                  <a
+                    href="mailto:bijoyhasan1612@gmail.com"
+                    style="color: inherit; text-decoration: none"
+                    >bijoyhasan1612@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="contact-detail">
+                <div class="contact-detail-label">HOURS</div>
+                <div style="color: var(--muted-fg); font-size: 0.9rem">
+                  Monday – Friday<br />9:00 AM – 5:00 PM KST
+                </div>
+              </div>
+              <div class="contact-detail">
+                <div class="contact-detail-label">WHATSAPP</div>
+                <div style="color: var(--muted-fg); font-size: 0.9rem">
+                  <a
+                    href="https://wa.me/8801706392496"
+                    target="_blank"
+                    style="color: var(--wa-green); font-weight: 700"
+                    >+880 1706 392496</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="contact-form-col">
+              <form
+                class="form-box"
+                style="background: rgba(240, 246, 248, 0.5)"
+                onsubmit="submitContact(event)"
+              >
+                <div class="form-field">
+                  <label class="form-label">Name</label>
+                  <input id="contact-name" class="form-input" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Email</label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    class="form-input"
+                    required
+                  />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Order Item (Optional)</label>
+                  <input id="contact-order" class="form-input" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Message</label>
+                  <textarea
+                    id="contact-message"
+                    class="form-textarea"
+                    rows="6"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary w-full btn-sq"
+                  style="border-radius: var(--radius)"
+                  id="contact-submit-btn"
+                >
+                  SEND MESSAGE
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div id="page-about" class="page">
+        <div
+          class="container"
+          style="
+            padding-top: 3rem;
+            padding-bottom: 5rem;
+            max-width: 700px;
+            text-align: center;
+          "
+        >
+          <div class="section-title" style="margin-bottom: 1rem">
+            About Seōna
+          </div>
+          <p style="color: var(--muted-fg); line-height: 1.8; font-size: 1rem">
+            Seōna is your curated destination for premium Korean skincare. We
+            handpick the finest products from South Korea's most trusted brands
+            — bringing you clean, effective, and honest beauty.
+          </p>
+          <p
+            style="
+              color: var(--muted-fg);
+              line-height: 1.8;
+              font-size: 1rem;
+              margin-top: 1rem;
+            "
+          >
+            We believe skincare is self-care. Every product we carry is chosen
+            with intention, to help you build a routine that works for your skin
+            and feels like a ritual.
+          </p>
+          <button
+            class="btn btn-primary"
+            style="margin-top: 2rem"
+            onclick="navigate('shop')"
+          >
+            SHOP NOW
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Seōna</div>
+          <p class="footer-desc">
+            Your curated destination for premium Korean skincare. Discover
+            clean, soft, and trustworthy beauty products for your daily
+            self-care routine.
+          </p>
+        </div>
+        <div>
+          <div class="footer-col-title">SHOP</div>
+          <ul class="footer-links">
+            <li><span onclick="navigate('shop')">All Products</span></li>
+            <li><span onclick="navigate('categories')">Categories</span></li>
+            <li><span onclick="navigate('brands')">Brands</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">SUPPORT</div>
+          <ul class="footer-links">
+            <li><span onclick="navigate('contact')">Contact Us</span></li>
+            <li><span>FAQ</span></li>
+            <li><span>Shipping &amp; Returns</span></li>
+            <li><span>Privacy Policy</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">CONTACT</div>
+          <ul class="footer-links">
+            <li>
+              <a
+                href="mailto:bijoyhasan1612@gmail.com"
+                style="color: inherit; text-decoration: none"
+                >Email: bijoyhasan1612@gmail.com</a
+              >
+            </li>
+            <li>Hours: Mon–Fri 9am – 5pm KST</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; <span id="copy-year"></span> Seōna. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
